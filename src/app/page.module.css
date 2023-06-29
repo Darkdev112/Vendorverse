@@ -1,0 +1,31 @@
+.bmd{
+    line-height: 10rem;
+}
+
+.background{
+    background : url('../assets/images/home-background.jpg') no-repeat ;
+    background-size: cover;
+}
+
+.background2{
+    background: url('../assets/images/side-image.png') no-repeat;
+    background-size: cover;
+    
+}
+
+
+@media screen and (min-width : 170px) {
+    .bmd{
+        line-height : 6rem ;
+    }
+}
+@media screen and (min-width : 640px) {
+    .bmd{
+        line-height: 10rem;
+    }
+}
+
+
+@media screen and (min-width : 170px) {
+    
+}
