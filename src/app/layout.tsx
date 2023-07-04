@@ -1,7 +1,6 @@
 import './globals.css'
 import Navbar from '@/components/Navbar/Navbar'
 import Footer from '@/components/Footer/Footer'
-import styles from './layout.module.css'
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className={styles.main_layout}>
+        <main className="min-w-full bg-[#DDD0C8] flex flex-col">
               <Navbar/>
-              <div className={styles.layout}>
+              <div className="min-h-screen relative">
                 {children}
               </div>
               <Footer/>

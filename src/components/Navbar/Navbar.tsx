@@ -23,11 +23,11 @@ export default function Navbar(){
                 <div className='w-1/4 lg:block md:hidden sm:hidden pl-[2rem]  flex'>
                 <Link href='/profile'><Image className='cursor-pointer' src={Logo} alt="" width={60} height={60}/></Link>
                 </div>
-                <div className={`lg:w-1/2 lg:block md:hidden sm:hidden  text-center `}>
+                <div className={`lg:w-1/2 lg:block md:hidden sm:hidden text-center `}>
                     <p className='text-[3rem] tracking-widest font-semibold text-[#323232] font-changa '>VENDORVERSE</p>
                 </div>
                 <div className='lg:w-1/4 flex flex-row h-full items-center md:pr-[3rem] sm:pr-[0.8rem] md:flex md:w-2/3 md:justify-end sm:ml-auto'>
-                    <div className='lg:mr-auto w-3/5 text-end font-kalam md:w-auto md:ml-auto md:mr-4 sm:mx-3'>
+                    <div className='lg:mr-auto w-3/5 text-end font-rokkitt tracking-wide md:w-auto md:ml-auto md:mr-4 sm:mx-3'>
                         <div className='lg:hidden md:block'><Button size='medium' handleClick={handleClick} text="Join Us"/></div>
                         <div className='lg:block md:hidden sm:hidden ;'><Button size='large' handleClick={handleClick} text="Join Us"/></div>
                     </div>

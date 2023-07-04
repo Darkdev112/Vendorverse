@@ -61,7 +61,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className='min-h-[5rem] h-auto font-kalam md:text-2xl sm:text-lg font-bold  uppercase flex items-center lg:ml-[5vw] mt-4 text-[#323232]'>
+          <div className='min-h-[5rem] h-auto font-rokkitt tracking-wide md:text-2xl sm:text-lg font-bold  uppercase flex items-center lg:ml-[5vw] mt-4 text-[#323232]'>
             The most feasible solution to maintain your supply chain
           </div>
 
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='my-8 flex flex-row text-3xl justify-center items-center font-kalam'>
+      <div className='my-8 flex flex-row text-3xl justify-center items-center font-rokkitt tracking-wide'>
         <Button size='large' text="About us" handleClick={handleClick}/>
       </div>
     </div>

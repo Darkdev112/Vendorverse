@@ -1,0 +1,9 @@
+.login1{
+    background : url('../../../assets/images/login1.jpg') no-repeat ;
+    background-size: cover;
+}
+
+.login2{
+    background : url('../../../assets/images/login2.png') no-repeat ;
+    background-size: cover;
+}
