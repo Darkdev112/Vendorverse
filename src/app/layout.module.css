@@ -1,8 +1,0 @@
-.main_layout{
-    @apply  min-w-full bg-[#DDD0C8] flex flex-col ;
-}
-
-.layout{
-    @apply min-h-screen
-}
-

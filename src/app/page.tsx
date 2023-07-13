@@ -1,10 +1,9 @@
 "use client"
 
 import Card from '@/components/CardHome/Card'
-import Manufacturer from '../assets/images/CardHome/Manufacturer.png'
-import Distributor from '../assets/images/CardHome/Distributor.png'
-import Retailer from '../assets/images/CardHome/Retailer.png'
-import sideImage from '../assets/images/side-image.png'
+import Manufacturer from '../assets/images/Manufacturer.png'
+import Distributor from '../assets/images/Distributor.png'
+import Retailer from '../assets/images/Retailer.png'
 import styles from './page.module.css'
 import Button from '@/components/Button/Button'
 import { useRouter } from 'next/navigation'
@@ -61,7 +60,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className='min-h-[5rem] h-auto font-kalam md:text-2xl sm:text-lg font-bold  uppercase flex items-center lg:ml-[5vw] mt-4 text-[#323232]'>
+          <div className='min-h-[5rem] h-auto font-rokkitt tracking-wide md:text-2xl sm:text-lg font-bold  uppercase flex items-center lg:ml-[5vw] mt-4 text-[#323232]'>
             The most feasible solution to maintain your supply chain
           </div>
 
@@ -73,7 +72,7 @@ export default function Home() {
 
       <div className='my-8 flex flex-row md:text-3xl sm:text-2xl justify-center items-center font-changa'>
           <p className='text-[#323232]'>
-            Go to your workplace
+            Create your workplace
           </p>
       </div>
 
@@ -98,7 +97,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='my-8 flex flex-row text-3xl justify-center items-center font-kalam'>
+      <div className='my-8 flex flex-row text-3xl justify-center items-center font-rokkitt tracking-wide'>
         <Button size='large' text="About us" handleClick={handleClick}/>
       </div>
     </div>

@@ -16,6 +16,7 @@ module.exports = {
         'changa' : ['Changa', 'sans-serif'],
         'kalam' : ['Kalam', 'cursive'],
         'audio' : ['Audiowide', 'cursive'],
+        "rokkitt" : ['Rokkitt', 'serif']
       },
       screens:{
         'sm' : '170px',

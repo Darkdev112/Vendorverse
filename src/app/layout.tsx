@@ -1,7 +1,11 @@
 import './globals.css'
+import { Providers } from '@/redux/provider'
 import Navbar from '@/components/Navbar/Navbar'
 import Footer from '@/components/Footer/Footer'
-import styles from './layout.module.css'
+import LoadingBar from '@/components/LoadingBar/LoadingBar'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { cookies } from 'next/headers'
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,16 +17,33 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const cookieStore = cookies()
+  const session : undefined | {name : string, value : string}= cookieStore.get('session_token');
   return (
     <html lang="en">
       <body>
-        <main className={styles.main_layout}>
-              <Navbar/>
-              <div className={styles.layout}>
-                {children}
-              </div>
-              <Footer/>
-        </main>
+        <Providers>
+          <main className="min-w-full bg-[#DDD0C8] flex flex-col">
+            <ToastContainer
+              position="top-center"
+              autoClose={2000}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss={false}
+              draggable
+              pauseOnHover={false}
+              theme="light"
+            />
+            <Navbar sessionToken={session?.value}/>
+            <LoadingBar/>
+            <div className="min-h-screen relative">
+              {children}
+            </div>
+            <Footer />
+          </main>
+        </Providers>
       </body>
     </html>
   )

@@ -3,7 +3,7 @@ import styles from './footer.module.css'
 
 export default function Footer(){
     return (
-        <footer className={`${styles.footer} flex md:flex-row px-8 py-4 bg-[#323232] border-t-4
+        <footer className={`w-full md:h-[100px] sm:h-auto flex md:flex-row px-8 py-4 bg-[#323232] border-t-4
         border-gray-100 sm:flex-col sm:items-center`}>
             <div className='w-1/2 h-full flex flex-col justify-center'>
                 <div className='text-3xl uppercase font-changa text-zinc-100'>
