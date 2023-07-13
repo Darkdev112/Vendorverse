@@ -1,4 +1,0 @@
-.header{
-    @apply md:h-[90px] sm:h-[70px] lg:m-8 md:m-8 sm:m-2 sm:mt-8 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 shadow-md;
-}
-

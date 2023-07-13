@@ -1,10 +1,9 @@
 "use client"
 
 import Card from '@/components/CardHome/Card'
-import Manufacturer from '../assets/images/CardHome/Manufacturer.png'
-import Distributor from '../assets/images/CardHome/Distributor.png'
-import Retailer from '../assets/images/CardHome/Retailer.png'
-import sideImage from '../assets/images/side-image.png'
+import Manufacturer from '../assets/images/Manufacturer.png'
+import Distributor from '../assets/images/Distributor.png'
+import Retailer from '../assets/images/Retailer.png'
 import styles from './page.module.css'
 import Button from '@/components/Button/Button'
 import { useRouter } from 'next/navigation'
@@ -73,7 +72,7 @@ export default function Home() {
 
       <div className='my-8 flex flex-row md:text-3xl sm:text-2xl justify-center items-center font-changa'>
           <p className='text-[#323232]'>
-            Go to your workplace
+            Create your workplace
           </p>
       </div>
 
