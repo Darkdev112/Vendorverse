@@ -24,7 +24,8 @@ export default function Navbar({sessionToken} : {sessionToken : string | undefin
     }
 
     const handleLogoutClick = () => {
-        deleteToken();
+        void deleteToken();
+        dispatch(removeToken());
         router.push('/')
         router.refresh()
     }
