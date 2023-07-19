@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div className='mx-8 my-2'>
-      <div className={`${styles.background} h-auto   rounded-lg p-8 flex lg:flex-row sm:flex-col`}>
+      <div className={`${styles.background} h-auto rounded-lg p-8 flex lg:flex-row sm:flex-col`}>
         <div className='lg:w-3/5 flex flex-col  h-full md:p-8 sm:px-2 font-changa md:w-full '>
           
           <div className='h-full '>
@@ -34,7 +34,7 @@ export default function Home() {
           </div>
 
 
-          <div className=' h-full   flex justify-end'>
+          <div className=' h-full flex justify-end'>
             <div className='h-full  w-fit flex flex-row lg:mr-[5vw]'>
               <p className={`${styles.bmd} md:text-[12rem] sm:text-[6rem] text-[#323232]`}>C</p>
               <p className={`${styles.bmd} md:text-[6rem] sm:text-[2rem] font-bold flex flex-col`}>
