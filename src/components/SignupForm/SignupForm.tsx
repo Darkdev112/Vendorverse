@@ -20,7 +20,8 @@ export default function SignupForm( props : {occupant : string | undefined, url 
             const response = await axios.post(`${props.url}/signup`, data, {
                 headers:{
                     "Content-Type" : "application/json"
-                }
+                },
+                'withCredentials' : true
             })
     
             console.log("response of login", response);

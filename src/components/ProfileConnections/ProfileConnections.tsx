@@ -10,7 +10,7 @@ interface ProfileConnectionsState {
 export default function ProfileConnection(props : ProfileConnectionsState) { 
     const profilePic = props.profilePic? "" : props.email.toUpperCase().slice(0,1)
     return (
-        <div className="my-5 border border-red-500 h-auto">
+        <div className="my-5 h-auto">
             <div className="flex flex-row justify-start">
                 <div className="w-[3rem] h-[3rem] border-2  border-gray-100 rounded-[50%]  bg-[#DDD0C8] flex justify-center items-center">
                     <div className="text-lg font-semibold text-center text-[#323232]">
