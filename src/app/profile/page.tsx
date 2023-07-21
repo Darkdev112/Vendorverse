@@ -4,10 +4,13 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { AiOutlinePlusCircle } from 'react-icons/ai'
-import { RiPassPendingLine } from 'react-icons/ri'
 import { BsBoxArrowInRight } from 'react-icons/bs'
 import HomeProject from "@/components/HomeProject/HomeProject";
 import ProfileConnections from '@/components/ProfileConnections/ProfileConnections'
+import EditButton from "@/components/ProfilePageButtons/EditButton";
+import ManageButton from "@/components/ProfilePageButtons/ManageButton";
+import AddFollowersButton from "@/components/ProfilePageButtons/AddFollowersButton";
+import AddRequestsButton from "@/components/ProfilePageButtons/AddRequestsButton";
 
 async function getFunc(link: string) {
     const cookieStore = cookies();
@@ -102,9 +105,11 @@ export default async function Profile() {
                     <div className="lg:w-1/4 md:w-auto h-full lg:mr-[2rem] sm:mr-0 rounded-[4rem] bg-[#323232] py-4 sm:mt-8 lg:mt-0">
                         <div className="h-full w-full flex flex-col">
                             <div className="flex flex-row mx-auto w-5/6 h-1/10">
-                                <span className="flex flex-row justify-center items-center relative"><RiPassPendingLine size={25} className="hover:text-[#DDD0C8] text-[#F5F5F5] cursor-pointer ml-2" /><span className={`absolute top-0 right-[-0.4rem] w-3 h-3 rounded-[50%] bg-rose-700/80 ${response.user?.requests.length === 0 ? 'hidden' : ''}`}></span></span>
+                                <AddFollowersButton>
+                                    <span className={`absolute top-0 right-[-0.4rem] w-3 h-3 rounded-[50%] bg-rose-700/80 ${response.user?.requests.length === 0 ? 'hidden' : ''}`}></span>
+                                </AddFollowersButton>
                                 <h1 className="font-changa text-[#DDD0C8] text-2xl text-center mx-auto">Connections</h1>
-                                <span className="flex flex-row justify-center items-center  "><AiOutlinePlusCircle size={25} className="hover:text-[#DDD0C8] text-[#F5F5F5] cursor-pointer mr-2" /></span>
+                                <AddRequestsButton/>
                             </div>
                             <div className="px-4  h-4/5 w-full font-rokkitt">
                                 {response2.user?.length === 0 ? <div className="text-xl font-rokkitt text-center mt-8 text-[#98AFC7] ">No connections to display</div> : response2.user.slice(0, 5).map((connection: { fullname: string | undefined, email: string, occupation: string, work: string | undefined, profilePic: string | undefined }) => {
@@ -114,7 +119,7 @@ export default async function Profile() {
                                 })}
                             </div>
                             <div className="w-full h-1/10 text-center font-changa text-gray-100 text-lg tracking-wider font-semibold mt-4">
-                                <span className="hover:text-[#DDD0C8] hover:underline transition cursor-pointer">Manage</span>
+                                <ManageButton text="Show" size="medium"/>
                             </div>
                         </div>
                     </div>
@@ -164,8 +169,8 @@ export default async function Profile() {
                                     </div>
                                 </div>
                             </div>}
-                            <div className="mt-6 w-full text-center font-changa text-gray-100 text-lg tracking-wider font-semibold">
-                                <span className="hover:text-[#DDD0C8] hover:underline transition cursor-pointer ">Edit</span>
+                            <div className=" w-full text-center font-changa text-gray-100 text-lg tracking-wider font-semibold">
+                                <EditButton text="Edit" size="medium"/>
                             </div>
                         </div>
                     </div>
