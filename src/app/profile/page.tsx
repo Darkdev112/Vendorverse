@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { AiOutlinePlusCircle } from 'react-icons/ai'
+import { AiOutlinePlusCircle, AiOutlineTwitter, AiOutlineLinkedin } from 'react-icons/ai'
 import { BsBoxArrowInRight } from 'react-icons/bs'
 import HomeProject from "@/components/HomeProject/HomeProject";
 import ProfileConnections from '@/components/ProfileConnections/ProfileConnections'
@@ -61,11 +61,13 @@ export default async function Profile() {
     if (session) {
         return (
             <div className="md:mx-8 sm:mx-2 sm:mt-4 mb-8 flex flex-col min-h-auto rounded-md bg-[#323232] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 shadow-md">
+
+                
                 <div className="md:w-auto sm:w-full lg:h-[26rem] sm:h-auto md:mx-[2rem] sm:mx-0 mt-[2rem] mb-[2rem] rounded-[4rem] flex flex-col md:p-8 sm:p-4 bg-[#323232]">
                     <div className="w-full lg:h-2/3 sm:h-full  flex lg:flex-row lg:justify-around sm:flex-col sm:items-center ">
                         <div className="md:w-[35rem] sm:w-full h-full  flex flex-row md:justify-start sm:justify-center">
                             <div className="md:w-[12rem] md:h-[12rem] sm:w-auto sm:h-auto border-4 border-gray-100 rounded-[50%] my-auto mx-2 bg-[#DDD0C8] flex justify-center items-center">
-                                {response.user?.profilePic ? <img src="#" alt="image"></img> : <div className="md:h-[10rem] md:w-[10rem] sm:h-[5rem] sm:w-[5rem]  font-changa md:text-[6.5rem] sm:text-[3rem] text-center text-[#323232]">{response.user?.email.toUpperCase().slice(0, 1)}</div>}
+                                {response.user?.profilePic ? <img src="#" alt="image"></img> : <div className="md:h-[10rem] md:w-[10rem] sm:h-[5rem] sm:w-[5rem]  font-changa md:text-[6.5rem] sm:text-[3rem] text-center text-[#323232]">{response.user?.email?.toUpperCase().slice(0, 1)}</div>}
                             </div>
                             <div className="md:w-[20rem] sm:w-auto h-[10rem] my-auto sm:ml-2  flex flex-col justify-center">
                                 <div className="h-auto w-full  md:text-[3rem] sm:text-[2.2rem] tracking-wide text-[#DDD0C8] font-changa text-center">{response3.user?.username}</div>
@@ -101,7 +103,10 @@ export default async function Profile() {
                         </div>
                     </div>
                 </div>
+
+
                 <div className="w-auto lg:h-[30rem] sm:h-auto md:mx-[2rem] mb-[2rem] rounded-[4rem] flex lg:flex-row sm:flex-col-reverse sm:justify-center sm:items-center">
+
                     <div className="lg:w-1/4 md:w-auto h-full lg:mr-[2rem] sm:mr-0 rounded-[4rem] bg-[#323232] py-4 sm:mt-8 lg:mt-0">
                         <div className="h-full w-full flex flex-col">
                             <div className="flex flex-row mx-auto w-5/6 h-1/10">
@@ -112,7 +117,7 @@ export default async function Profile() {
                                 <AddRequestsButton/>
                             </div>
                             <div className="px-4  h-4/5 w-full font-rokkitt">
-                                {response2.user?.length === 0 ? <div className="text-xl font-rokkitt text-center mt-8 text-[#98AFC7] ">No connections to display</div> : response2.user.slice(0, 5).map((connection: { fullname: string | undefined, email: string, occupation: string, work: string | undefined, profilePic: string | undefined }) => {
+                                {response2.user?.length === 0 ? <div className="text-xl font-rokkitt text-center mt-8 text-[#98AFC7] ">No connections to display</div> : response2.user?.slice(0, 5).map((connection: { fullname: string | undefined, email: string, occupation: string, work: string | undefined, profilePic: string | undefined }) => {
                                     return (
                                         <ProfileConnections fullname={connection.fullname} email={connection.email} occupation={connection.occupation} profilePic={connection.profilePic} key={connection.email} />
                                     )
@@ -123,6 +128,9 @@ export default async function Profile() {
                             </div>
                         </div>
                     </div>
+
+
+
                     <div className="lg:w-3/4 sm:w-full h-full  rounded-[4rem] bg-[#323232] md:px-8 sm:px-4 py-4">
                         <div className="h-full w-full  ">
                             <div className="flex flex-row">
@@ -159,13 +167,11 @@ export default async function Profile() {
                                     <p className="font-rokkitt text-xl text-[#DDD0C8] ml-2 pt-[0.2rem] sm:break-all">{response.user?.work}</p>
                                 </div>
                                 <div className="my-5  h-auto flex flex-row sm:flex-wrap md:flex-nowrap ">
-                                    <div className="md:w-1/2 sm:w-full flex flex-row mr-4">
-                                        <p className="font-rokkitt text-2xl text-[#DDD0C8] font-bold">LinkedIn<span className="mx-2">:</span></p>
-                                        <p className="font-rokkitt text-xl text-[#DDD0C8] ml-2 pt-[0.2rem] cursor-pointer sm:break-all"><a href={response.user?.linkedIn} target='_blank'>{response.user?.linkedIn}</a></p>
+                                    <div className="md:w-auto sm:w-full flex flex-row mr-4">
+                                        <p className="font-rokkitt text-xl text-[#DDD0C8] ml-2 pt-[0.2rem] cursor-pointer sm:break-all hover:text-gray-100"><a href={response.user?.linkedIn} target='_blank'><AiOutlineLinkedin size={30}/></a></p>
                                     </div>
-                                    <div className="md:w-1/2 sm:w-full flex flex-row">
-                                        <p className="font-rokkitt text-2xl text-[#DDD0C8] font-bold">Twitter<span className="mx-2">:</span></p>
-                                        <p className="font-rokkitt text-xl text-[#DDD0C8] ml-2 pt-[0.2rem] cursor-pointer sm:break-all"><a href={response.user?.twitter} target='_blank'>{response.user?.twitter}</a></p>
+                                    <div className="md:w-auto sm:w-full flex flex-row">
+                                        <p className="font-rokkitt text-xl text-[#DDD0C8] ml-2 pt-[0.2rem] cursor-pointer sm:break-all hover:text-gray-100"><a href={response.user?.twitter} target='_blank'><AiOutlineTwitter size={30}/></a></p>
                                     </div>
                                 </div>
                             </div>}
@@ -174,10 +180,16 @@ export default async function Profile() {
                             </div>
                         </div>
                     </div>
+
                 </div>
-                <div className="md:w-[15rem] md:h-[5rem] sm:w-[10rem] sm:h-[4rem] rounded-[1rem] border-4 border-gray-100 mb-8 mx-auto flex flex-row justify-center items-center bg-[#DDD0C8] hover:bg-[#323232] text-[#323232] hover:text-[#DDD0C8] cursor-pointer transition">
+
+
+
+                <div className="md:w-[15rem] md:h-[5rem] sm:w-[10rem] sm:h-[4rem] rounded-[1rem] border-4 border-gray-100 mb-8 mx-auto flex flex-row justify-center items-center bg-[#DDD0C8] hover:bg-[#323232] text-[#323232] hover:text-[#DDD0C8] cursor-pointer">
                          <Link href={`/workspace/${response3.user.occupation.toLowerCase().slice(0,1)}`} ><p className=" font-changa md:text-[2rem] sm:text-[1.5rem] leading-8 text-center flex flex-row">Workspace<span className="pt-1"><BsBoxArrowInRight/></span></p></Link>      
                 </div>
+
+
             </div>
         )
     }
