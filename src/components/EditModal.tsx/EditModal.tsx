@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import Modal from "../Modal/Modal"
 import { newSelector, newDispatch } from "@/redux/hooks"
 import { onEditClose } from "@/redux/features/modalSlice"
-import getSession from '@/utils/getSession'
+import { updateProfile } from '@/api/profile'
 
 export interface FormFieldsEdit {
     fullname: string,
@@ -24,12 +24,6 @@ export default function EditModal() {
     const { isEditOpen } = newSelector((state) => state.modal)
     const router = useRouter()
     const dispatch = newDispatch();
-    let sessionToken : string;
-    getSession().then((res) => {
-        sessionToken = res
-    }).catch(()=>{
-        console.log("dont know error");
-    })
     const { register, handleSubmit, formState } = useForm<FormFieldsEdit>()
 
     const onClose = () => {
@@ -38,16 +32,8 @@ export default function EditModal() {
 
     const handleClick = async (data: FormFieldsEdit) => {
         try {
-            const response = await axios.patch(`http://localhost:5000/updateProfile`, data, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization" : sessionToken
-                },
-                'withCredentials': true
-            })
-
-            console.log("response of update", response);
-            if (!response.data.error) {
+            const result = await updateProfile(data)
+            if (!result.error) {
                 onClose()
                 toast.success('Saved successfully', {
                     position: "top-center",
@@ -77,7 +63,7 @@ export default function EditModal() {
 
     const body: React.ReactElement = (
         <>
-            <form className="my-8 w-[18rem] h-auto p-2 flex flex-col justify-center items-center mx-auto" onSubmit={handleSubmit(handleClick)}>
+            <form className="my-4 w-[18rem] h-auto p-2 flex flex-col justify-center items-center mx-auto" onSubmit={handleSubmit(handleClick)}>
                 <div className="w-full h-[5rem] mb-1">
                     <input className='w-full h-[3rem] rounded-[0.75rem] focus:outline-none focus:ring focus:ring-[#98AFC7] px-[1rem] text-[#323232] placeholder:text-[#DDD0C8] placeholder:font-sans placeholder:font-normal placeholder:text-lg placeholder:tracking-normal font-rokkitt font-bold tracking-wider text-xl' placeholder='Fullname' {...register("fullname", {
                         required: "Fullname is required",
