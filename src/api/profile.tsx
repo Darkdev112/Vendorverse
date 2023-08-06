@@ -38,3 +38,9 @@ export const manageRequest = async (id:string, success : string) => {
     const response = await fetcher.patch(`/manageRequest?success=${success}`,{id})
     return response.data
 }
+
+export const addRequest = async (data : {email : string}) => {
+    const fetcher = await createAxios()
+    const response = await fetcher.patch(`/addRequest`,data)
+    return response.data
+}
