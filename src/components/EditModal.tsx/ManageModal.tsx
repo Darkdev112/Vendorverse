@@ -12,6 +12,7 @@ export default function ManageModal(){
     const dispatch = newDispatch();
     const onClose = () => {
         dispatch(onManageClose())
+        mutate()
     }
 
     const {data, error, isLoading, mutate} = useSWR('/getConnections',getConnections)
