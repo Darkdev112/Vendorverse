@@ -36,4 +36,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 #colours - blue-gray-#98AFC7 , black-#323232 , beige-#DDD0C8 ,  gray-100
 
 ## bugs
-Edit profile page clear input field data after submitting
+
+On first render of the show connection it is showing empty
+
+On coming back after managing the request you have to refresh the page
+
+on sending request to someone remove the alerts which get displayed after focusing on the input again
+
+navbar icon representation after logging in
+
