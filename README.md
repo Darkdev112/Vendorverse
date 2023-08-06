@@ -33,4 +33,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-colours - blue-gray-#98AFC7 , black-#323232 , beige-#DDD0C8 ,  gray-100
+#colours - blue-gray-#98AFC7 , black-#323232 , beige-#DDD0C8 ,  gray-100
+
+## bugs
+Edit profile page clear input field data after submitting

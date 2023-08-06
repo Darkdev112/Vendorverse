@@ -31,7 +31,7 @@ export default function Navbar({sessionToken} : {sessionToken : string | undefin
     }
 
     return (
-        <nav className='md:h-[90px] sm:h-[70px] lg:m-8 md:m-8 sm:m-2 sm:mt-8 bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 shadow-md'>
+        <nav className='md:h-[90px] sm:h-[70px] lg:m-8 md:m-8 sm:m-2 sm:mt-8 bg-purple-400 rounded-md bg-clip-padding backdrop-filter bg-opacity-10 border border-gray-100 shadow-md'>
             <div className='w-full p-2 flex flex-row h-full items-center'>
                 <div className='lg:hidden md:flex md:w-1/3  pl-4  sm:w-1/4'>
                     <Image className='mr-2' src={Logo} alt="" width={48} height={48}/>

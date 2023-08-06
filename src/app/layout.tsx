@@ -2,14 +2,11 @@ import './globals.css'
 import { Providers } from '@/redux/provider'
 import Navbar from '@/components/Navbar/Navbar'
 import Footer from '@/components/Footer/Footer'
-import LoadingBar from '@/components/LoadingBar/LoadingBar'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { cookies } from 'next/headers'
 import EditModal from '@/components/EditModal.tsx/EditModal'
 import ManageModal from '@/components/EditModal.tsx/ManageModal'
-import AddRequestsModal from '@/components/EditModal.tsx/AddRequestsModal'
-import AddFollowersModal from '@/components/EditModal.tsx/AddFollowersModal'
 
 export const metadata = {
   title: 'Create Next App',
@@ -30,8 +27,6 @@ export default function RootLayout({
           <main className="min-w-full bg-[#DDD0C8] flex flex-col">
             <EditModal/>
             <ManageModal/>
-            <AddRequestsModal/>
-            <AddFollowersModal/>
             <ToastContainer
               position="top-center"
               autoClose={2000}
@@ -45,7 +40,6 @@ export default function RootLayout({
               theme="light"
             />
             <Navbar sessionToken={session?.value}/>
-            <LoadingBar/>
             <div className="min-h-screen relative">
               {children}
             </div>

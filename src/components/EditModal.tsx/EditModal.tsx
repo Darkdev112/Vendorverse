@@ -24,10 +24,11 @@ export default function EditModal() {
     const { isEditOpen } = newSelector((state) => state.modal)
     const router = useRouter()
     const dispatch = newDispatch();
-    const { register, handleSubmit, formState } = useForm<FormFieldsEdit>()
+    const { register, handleSubmit,reset, formState } = useForm<FormFieldsEdit>()
 
     const onClose = () => {
         dispatch(onEditClose())
+        reset()
     }
 
     const handleClick = async (data: FormFieldsEdit) => {
@@ -45,6 +46,8 @@ export default function EditModal() {
                     progress: undefined,
                     theme: "light",
                 });
+                router.push('/profile')
+                router.refresh()
             }
         } catch (error) {
             console.log(error);
