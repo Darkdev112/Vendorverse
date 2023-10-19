@@ -7,13 +7,12 @@ import Retailer from '../assets/images/Retailer.png'
 import styles from './page.module.css'
 import Button from '@/components/Button/Button'
 import { useRouter } from 'next/navigation'
-import { useCallback } from 'react'
 
 export default function Home() {
   const router = useRouter();
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     router.push('/about')
-  },[router])
+  }
 
   return (
     <div className='mx-8 my-2'>

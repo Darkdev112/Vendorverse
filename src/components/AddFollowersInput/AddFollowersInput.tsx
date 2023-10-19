@@ -1,9 +1,10 @@
 "use client"
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import {FaSmileBeam, FaSadTear} from 'react-icons/fa'
 import { addRequest } from '@/api/profile'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 export interface AddFollowersInputState {
     email: string
@@ -13,11 +14,17 @@ export default function AddFollowersInput() {
     const [emoji1, setEmoji1] = useState<boolean>(false)
     const [emoji2, setEmoji2] = useState<boolean>(false)
     const [message, setMessage] = useState<string>("")
+    const [token, setToken] = useState<string | null>("")
     const { register, handleSubmit, formState } = useForm<AddFollowersInputState>()
+    // const router = useRouter()
+   
+    // if(!token){
+    //     router.push('/login')
+    // }
 
     const handleClick = async (data : AddFollowersInputState) => {
         try {
-            const response = await addRequest(data);
+            const response = await addRequest(data, token);
             if(response.user){
                 setEmoji1(true)
                 setMessage("Sent successfully")
@@ -40,6 +47,13 @@ export default function AddFollowersInput() {
             });
         }
     }
+
+    useEffect(() => {
+        if(typeof window !== "undefined"){
+            setToken(localStorage.getItem('token'))
+        }
+    }, [typeof window])
+    
 
     return (
         <>

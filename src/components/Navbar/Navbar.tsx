@@ -1,22 +1,19 @@
 "use client"
 import Image from 'next/image'
-import styles from './navbar.module.css'
 import Logo from '@/assets/images/logo.png'
 import Button from '../Button/Button'
-import { useCallback, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { newDispatch, newSelector } from '@/redux/hooks'
+import { newDispatch} from '@/redux/hooks'
 import { onLogin } from '@/redux/features/toggleLoginSlice'
-import {removeToken} from '@/redux/features/sessionSlice'
-import deleteToken from '@/utils/handleLogout'
 
-export default function Navbar({sessionToken} : {sessionToken : string | undefined}){
+export default function Navbar(){
+    const [token, setToken] = useState<string | null>("")
     const router = useRouter();
-    // const {sessionToken} = newSelector((state) => state.session)
     const dispatch = newDispatch();
     const [profileText, setProfileText] = useState<string>("?");
-    console.log("navbar : ", sessionToken);
+
 
     const handleLoginClick =() => {
         dispatch(onLogin())
@@ -24,12 +21,31 @@ export default function Navbar({sessionToken} : {sessionToken : string | undefin
     }
 
     const handleLogoutClick = () => {
-        void deleteToken();
-        dispatch(removeToken());
+        localStorage.removeItem('token')
         router.push('/')
         router.refresh()
     }
 
+    const handleProfileText = (use : string) => {
+        if(use == 'logo'){
+            router.push(`/profile/${token}`)
+        }
+        else{
+            if(profileText === '?'){
+                router.push('/login')
+            }
+            else{
+                router.push(`/profile/${token}`)
+            }
+        }
+    }
+
+    useEffect(() => {
+        if(typeof window !== "undefined"){
+            setToken(localStorage.getItem('token'))
+        }
+    }, [typeof window])
+    
     return (
         <nav className='md:h-[90px] sm:h-[70px] lg:m-8 md:m-8 sm:m-2 sm:mt-8 bg-purple-400 rounded-md bg-clip-padding backdrop-filter bg-opacity-10 border border-gray-100 shadow-md'>
             <div className='w-full p-2 flex flex-row h-full items-center'>
@@ -38,19 +54,19 @@ export default function Navbar({sessionToken} : {sessionToken : string | undefin
                     <p className='text-[2rem] tracking-wide font-semibold text-[#323232] font-changa sm:hidden md:block'>VENDORVERSE</p>
                 </div>
                 <div className='w-1/4 lg:block md:hidden sm:hidden pl-[2rem]  flex'>
-                <Link href='/profile'><Image className='cursor-pointer' src={Logo} alt="" width={60} height={60}/></Link>
+                <Image className='cursor-pointer' src={Logo} alt="" width={60} height={60} onClick={() => {handleProfileText('logo')}}/>
                 </div>
                 <div className={`lg:w-1/2 lg:block md:hidden sm:hidden text-center `}>
                     <p className='text-[3rem] tracking-widest font-semibold text-[#323232] font-changa '>VENDORVERSE</p>
                 </div>
                 <div className='lg:w-1/4 flex flex-row h-full items-center md:pr-[3rem] sm:pr-[0.8rem] md:flex md:w-2/3 md:justify-end sm:ml-auto'>
                     <div className='lg:mr-auto w-3/5 text-end font-rokkitt tracking-wide md:w-auto md:ml-auto md:mr-4 sm:mx-3'>
-                        <div className='lg:hidden md:block'><Button size='medium' handleClick={sessionToken ? handleLogoutClick : handleLoginClick} text={sessionToken? "Logout" : "Login"}/></div>
-                        <div className='lg:block md:hidden sm:hidden ;'><Button size='large' handleClick={sessionToken ? handleLogoutClick : handleLoginClick} text={sessionToken? "Logout" : "Login"}/></div>
+                        <div className='lg:hidden md:block'><Button size='medium' handleClick={token ? handleLogoutClick : handleLoginClick} text={token? "Logout" : "Login"}/></div>
+                        <div className='lg:block md:hidden sm:hidden ;'><Button size='large' handleClick={token ? handleLogoutClick : handleLoginClick} text={token? "Logout" : "Login"}/></div>
                     </div>
-                    <Link href={profileText ==="?" ? '/login' : '/profile'}><div className=' text-center md:pt-[0.3rem] md:text-3xl md:w-[3rem] md:h-[3rem] rounded-[50%] border-2 hover:border-gray-100 border-[#323232] hover:bg-[#323232] bg-[#DDD0C8] sm:w-[2rem] sm:h-[2rem] sm:text-xl sm:pt-[0.05rem] cursor-pointer'>
+                    <div className=' text-center md:pt-[0.3rem] md:text-3xl md:w-[3rem] md:h-[3rem] rounded-[50%] border-2 hover:border-gray-100 border-[#323232] hover:bg-[#323232] bg-[#DDD0C8] sm:w-[2rem] sm:h-[2rem] sm:text-xl sm:pt-[0.05rem] cursor-pointer' onClick={() => {handleProfileText('question')}}>
                         <p className=' font-bold hover:text-[#DDD0C8] text-[#323232] hover: font-changa '>{profileText}</p>
-                    </div></Link>
+                    </div>
                 </div>
             </div>
         </nav>

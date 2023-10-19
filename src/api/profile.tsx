@@ -1,46 +1,46 @@
 "use client"
 
 import axios from "axios";
-import getSession from '../utils/getSession'
-import { FormFieldsEdit } from "@/components/EditModal.tsx/EditModal";
+import { FormFieldsEdit } from "@/components/EditModal/EditModal";
 
-const createAxios = async () => {
-    const session = await getSession();
+const createAxios = async (token : string | null) => {
     return axios.create({
         baseURL : "http://localhost:5000",
         headers : {
             'Content-Type' : 'application/json',
-            'Authorization' : session   
+            'Authorization' : `Bearer ${token}`   
         }
     })
 }
 
-export const getConnections = async () => {
-    const fetcher = await createAxios()
+export const getConnections = async (token : string | null) => {
+    const fetcher = await createAxios(token)
     const response = await fetcher.get('/getConnections')
     return response.data
 }
 
-export const updateProfile = async (data : FormFieldsEdit) => {
-    const fetcher = await createAxios()
+export const updateProfile = async (data : FormFieldsEdit,token : string | null) => {
+    console.log('update : ', token);
+    
+    const fetcher = await createAxios(token)
     const response = await fetcher.patch('/updateProfile',data)
     return response.data
 }
 
-export const getRequests = async () => {
-    const fetcher = await createAxios()
+export const getRequests = async (token : string | null) => {
+    const fetcher = await createAxios(token)
     const response = await fetcher.get('/getRequests')
     return response.data
 }
 
-export const manageRequest = async (id:string, success : string) => {
-    const fetcher = await createAxios()
+export const manageRequest = async (id:string, success : string, token : string | null) => {
+    const fetcher = await createAxios(token)
     const response = await fetcher.patch(`/manageRequest?success=${success}`,{id})
     return response.data
 }
 
-export const addRequest = async (data : {email : string}) => {
-    const fetcher = await createAxios()
+export const addRequest = async (data : {email : string}, token : string | null) => {
+    const fetcher = await createAxios(token)
     const response = await fetcher.patch(`/addRequest`,data)
     return response.data
 }

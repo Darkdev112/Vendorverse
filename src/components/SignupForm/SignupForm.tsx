@@ -21,10 +21,8 @@ export default function SignupForm( props : {occupant : string | undefined, url 
                 headers:{
                     "Content-Type" : "application/json"
                 },
-                'withCredentials' : true
             })
-    
-            console.log("response of login", response);
+
             if(!response.data.error){
                 toast.success('Account created', {
                     position: "top-center",
@@ -36,7 +34,8 @@ export default function SignupForm( props : {occupant : string | undefined, url 
                     progress: undefined,
                     theme: "light",
                   });
-                router.push('/profile')
+                localStorage.setItem('token',response.data.token)
+                router.push(`/profile/${response.data.token}`)
                 router.refresh()
             }
         } catch (error) {
