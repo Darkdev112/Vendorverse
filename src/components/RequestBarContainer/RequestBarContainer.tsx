@@ -1,9 +1,10 @@
 "use client"
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 import useSWR, { KeyedMutator } from 'swr'
 import RequestBar from "../RequestBar/RequestBar"
 import { getRequests, manageRequest} from "@/api/profile"
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 export interface User{
      _id: string, 
@@ -15,11 +16,22 @@ export interface User{
 }
 
 export default function RequestBarContainer() {
-    const {data,isLoading, mutate}  = useSWR<{user : User[]}, KeyedMutator<{user : User[]}>>('/getRequests',getRequests)
+    const [token2, setToken2] = useState<string | null>("")
+    const router = useRouter()   
     
-    const useManageRequest = async (id:string, success : "true" | "false") => {
+    // if(!token2){
+    //     router.push('/login')
+    // }
+
+    const getSWRRequests = async () => {
+        return await getRequests(token2)   //check if this works or not
+    }
+    
+    const {data,isLoading, mutate}  = useSWR<{user : User[]}, KeyedMutator<{user : User[]}>>('/getRequests',getSWRRequests)
+    
+    const useManageRequest = async (id:string, success : "true" | "false", token : string | null) => {
         try {
-            const response = await manageRequest(id , success)
+            const response = await manageRequest(id , success, token)
             mutate()
             if(response.success === "true"){
                 toast.success('Request accepted', {
@@ -49,6 +61,13 @@ export default function RequestBarContainer() {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        if(typeof window !== "undefined"){
+            setToken2(localStorage.getItem('token'))
+        } 
+    }, [typeof window])
+    
     return (
         <> 
             {isLoading ? <div className='text-xl font-changa font-semibold text-[#98AFC7] w-auto mx-auto text-center m-4'>Loading...</div> : data?.user?.map((request: User) => {

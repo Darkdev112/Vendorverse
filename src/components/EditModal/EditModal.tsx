@@ -1,8 +1,8 @@
 "use client"
 
+import { useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import axios from 'axios'
 import { toast } from 'react-toastify'
 import Modal from "../Modal/Modal"
 import { newSelector, newDispatch } from "@/redux/hooks"
@@ -21,6 +21,7 @@ export interface FormFieldsEdit {
 }
 
 export default function EditModal() {
+    const [token,setToken] = useState<string | null>("")
     const { isEditOpen } = newSelector((state) => state.modal)
     const router = useRouter()
     const dispatch = newDispatch();
@@ -33,7 +34,8 @@ export default function EditModal() {
 
     const handleClick = async (data: FormFieldsEdit) => {
         try {
-            const result = await updateProfile(data)
+            console.log(token);
+            const result = await updateProfile(data, token)
             if (!result.error) {
                 onClose()
                 toast.success('Saved successfully', {
@@ -46,7 +48,7 @@ export default function EditModal() {
                     progress: undefined,
                     theme: "light",
                 });
-                router.push('/profile')
+                router.push(`/profile/${token}`)
                 router.refresh()
             }
         } catch (error) {
@@ -181,6 +183,13 @@ export default function EditModal() {
             </form>
         </>
     )
+
+    useEffect(() => {
+        if(typeof window !== "undefined"){
+            setToken(localStorage.getItem('token'))
+        }
+    }, [typeof window])
+    
 
     return (
         <Modal isOpen={isEditOpen} onClose={onClose} title="Edit Profile" text="Save" body={body} hidden={true} />

@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import {AiOutlineTwitter, AiOutlineLinkedin} from 'react-icons/ai'
 import Modal from "../Modal/Modal"
@@ -8,6 +9,7 @@ import { onManageClose } from "@/redux/features/modalSlice"
 import { getConnections } from '@/api/profile'
 
 export default function ManageModal(){
+    const [token, setToken] = useState<string | null>("")
     const {isManageOpen} = newSelector((state) => state.modal)
     const dispatch = newDispatch();
     const onClose = () => {
@@ -15,7 +17,11 @@ export default function ManageModal(){
         mutate()
     }
 
-    const {data, error, isLoading, mutate} = useSWR('/getConnections',getConnections)
+    const getSWRConnections = async () => {
+        return await getConnections(token)
+    }
+
+    const {data, error, isLoading, mutate} = useSWR('/getConnections',getSWRConnections)
 
     const body : React.ReactElement = (
         <>
@@ -49,6 +55,12 @@ export default function ManageModal(){
             </div>
         </>
     )
+    
+    useEffect(() => {
+        if(typeof window !== "undefined"){
+            setToken(localStorage.getItem('token'))
+        }
+    }, [typeof window])
     
     return(
         <Modal isOpen={isManageOpen} onClose={onClose} onSubmit={onClose} title="Your Connections" text="Close" body={body} hidden={true}/>

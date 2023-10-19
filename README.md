@@ -33,15 +33,17 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-#colours - blue-gray-#98AFC7 , black-#323232 , beige-#DDD0C8 ,  gray-100
+## colours 
+
+ - blue-gray - #98AFC7 
+ - black - #323232 
+ - beige - #DDD0C8 
+ - gray - bg-gray-100
 
 ## bugs
 
-On first render of the show connection it is showing empty
-
-On coming back after managing the request you have to refresh the page
-
-on sending request to someone remove the alerts which get displayed after focusing on the input again
-
-navbar icon representation after logging in
+ - On first render of the show connection it is showing empty
+ - On coming back after managing the request you have to refresh the page
+ - On sending request to someone remove the alerts which get displayed after focusing on the input again
+ - Navbar icon representation after logging in
 

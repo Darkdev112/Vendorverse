@@ -1,5 +1,4 @@
 import axios from "axios";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { BsBoxArrowInRight } from 'react-icons/bs'
@@ -8,13 +7,13 @@ import ProfileSide from "@/components/ProfileSide/ProfileSide";
 import ProfileBody from "@/components/ProfileBody/ProfileBody";
 
 
-export default async function Profile() {
-    const getFunc = async (link: string, session : {name : string , value : string} | undefined) => {
+export default async function Profile({params} : {params : {auth : string}}) {
+    const {auth} = params
+    const getFunc = async (link: string) => {
         const response = await axios.get(`${process.env.TESTING_URL}/${link}`, {
-            "withCredentials": true,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': session?.value,
+                'Authorization': `Bearer ${auth}`,
             },
         })
         return response.data;
@@ -41,13 +40,11 @@ export default async function Profile() {
             link: "/profile"
         }
     ]
-    const cookieStore = cookies();
-    const session: undefined | { name: string, value: string } = cookieStore.get('session_token');
 
-    if (session) {
-        const response = await getFunc('getProfile', session);
-        const response2 = await getFunc('getConnections', session)
-        const response3 = await getFunc('getUser', session)
+    if (auth) {
+        const response = await getFunc('getProfile');
+        const response2 = await getFunc('getConnections')            // fix this part using promise.all as you know it
+        const response3 = await getFunc('getUser')
         return (
             <div className="md:mx-8 sm:mx-2 sm:mt-4 mb-8 flex flex-col min-h-auto rounded-md bg-[#323232] bg-clip-padding backdrop-filter bg-opacity-10 border border-gray-100 shadow-md">
 

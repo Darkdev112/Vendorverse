@@ -19,10 +19,8 @@ export default function LoginForm(props: {url : string}) {
                 headers:{
                     "Content-Type" : "application/json",
                 },
-                'withCredentials' : true
             })
-    
-            console.log("response of login", response);
+
             if(!response.data.error){
                 toast.success('Logged in', {
                     position: "top-center",
@@ -34,7 +32,8 @@ export default function LoginForm(props: {url : string}) {
                     progress: undefined,
                     theme: "light",
                   });
-                router.push('/profile');
+                localStorage.setItem('token', response.data.token)
+                router.push(`/profile/${response.data.token}`);
                 router.refresh();
             }
         } catch (error) {

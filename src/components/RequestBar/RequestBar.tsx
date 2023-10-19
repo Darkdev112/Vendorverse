@@ -1,4 +1,6 @@
 "use client"
+
+import { useEffect, useState } from 'react'
 import {RxCross1} from 'react-icons/rx'
 import {BiSelectMultiple} from 'react-icons/bi'
 
@@ -9,13 +11,20 @@ interface RequestBarProps{
     fullname?: string 
     work ?: string 
     profilePic ?: string 
-    useManageRequest : (id : string, success : "true" | "false") => Promise<void>
+    useManageRequest : (id : string, success : "true" | "false", token : string | null) => Promise<void>
 }
 
 
 export default function RequestBar({id , email, occupation, fullname, work, profilePic, useManageRequest} : RequestBarProps){
-    console.log(id);
+    const [token, setToken] = useState<string | null>("")
     
+    useEffect(() => {
+        if(typeof window !== "undefined"){
+            setToken(localStorage.getItem('token'))
+        }
+    }, [typeof window])
+    
+
     return(
         <>
         <div className="my-5 h-auto">
@@ -36,10 +45,10 @@ export default function RequestBar({id , email, occupation, fullname, work, prof
                 </div>
                 <div className="md:w-1/6 sm:w-1/4 h-auto flex flex-row justify-center items-center ">
                     <span className='w-1/2 my-auto text-[#DDD0C8] hover:text-green-300 cursor-pointer'>
-                        <BiSelectMultiple size={25} onClick={()=>{useManageRequest(id, "true")}} />
+                        <BiSelectMultiple size={25} onClick={()=>{useManageRequest(id, "true", token)}} />
                     </span>
                     <span className='w-1/2 my-auto text-[#DDD0C8] hover:text-red-300 cursor-pointer'>
-                        <RxCross1 size={25} onClick={()=>{useManageRequest(id, "false")}}/>
+                        <RxCross1 size={25} onClick={()=>{useManageRequest(id, "false", token)}}/>
                     </span>
                 </div>
             </div>
