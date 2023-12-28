@@ -46,4 +46,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
  - On coming back after managing the request you have to refresh the page
  - On sending request to someone remove the alerts which get displayed after focusing on the input again
  - Navbar icon representation after logging in
+ - router.refresh not working so u have to manually refresh the page when logging in
 

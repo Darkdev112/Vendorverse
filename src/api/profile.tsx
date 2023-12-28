@@ -15,13 +15,17 @@ const createAxios = async (token : string | null) => {
 
 export const getConnections = async (token : string | null) => {
     const fetcher = await createAxios(token)
+    if(!token){
+        return {
+            user : []
+        }
+    }
     const response = await fetcher.get('/getConnections')
     return response.data
 }
 
 export const updateProfile = async (data : FormFieldsEdit,token : string | null) => {
     console.log('update : ', token);
-    
     const fetcher = await createAxios(token)
     const response = await fetcher.patch('/updateProfile',data)
     return response.data
@@ -29,6 +33,11 @@ export const updateProfile = async (data : FormFieldsEdit,token : string | null)
 
 export const getRequests = async (token : string | null) => {
     const fetcher = await createAxios(token)
+    if(!token){
+        return {
+            user : []
+        }
+    }
     const response = await fetcher.get('/getRequests')
     return response.data
 }

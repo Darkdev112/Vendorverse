@@ -34,7 +34,7 @@ export default function LoginForm(props: {url : string}) {
                   });
                 localStorage.setItem('token', response.data.token)
                 router.push(`/profile/${response.data.token}`);
-                router.refresh();
+                router.refresh()
             }
         } catch (error) {
             console.log(error);
@@ -50,7 +50,14 @@ export default function LoginForm(props: {url : string}) {
               });
         }
     }
+
+    // const handleRefresh = () => {
+    //     console.log("hello");
+    //     router.refresh()
+    // }
+
     return (
+        <>
         <form className="my-8 w-[18rem] h-auto p-2 flex flex-col justify-center items-center" onSubmit={handleSubmit(handleClick)}>
             <div className="w-full h-[5rem] mb-1">
                 <input className='w-full h-[3rem] rounded-[0.75rem] focus:outline-none focus:ring focus:ring-[#98AFC7] px-[1rem] text-[#323232] placeholder:text-[#DDD0C8] placeholder:font-sans placeholder:font-normal placeholder:text-lg placeholder:tracking-normal font-rokkitt font-bold tracking-wider text-xl' placeholder='Email' {...register("email", {
@@ -70,5 +77,6 @@ export default function LoginForm(props: {url : string}) {
             </div>
             <button className='bg-[#DDD0C8] border border-gray-100 shadow-sm  text-black-100 text-[#323232] hover:bg-[#323232] hover:text-[#DDD0C8] w-[6rem] h-[2.5rem] p-2 text-lg font-bold text-black-100 rounded-lg font-rokkitt tracking-wide'>Login</button>
         </form>
+        </>
     )
 }
