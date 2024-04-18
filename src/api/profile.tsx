@@ -83,3 +83,21 @@ export const placeRetailerOrder = async(data : PlaceRetailerOrderProps, token : 
     const response = await fetcher.post('/placeOrderR',data)
     return response.data
 }
+
+export const getDistributorName = async(data : {email : string} , token : string | null) => {
+    if(!token){
+        return {}
+    }
+    const fetcher = await createAxios(token);
+    const response = await fetcher.post('/getDistributorName',data)
+    return response.data
+}
+
+export const getRetailerOrders = async(token : string | null) => {
+    if(!token){
+        return {}
+    }
+    const fetcher = await createAxios(token);
+    const response = await fetcher.get('/getOrdersR')
+    return response.data
+} 

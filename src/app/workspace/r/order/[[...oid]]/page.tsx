@@ -1,7 +1,8 @@
-export default function manageOrder() {
+export default function manageOrder({params} : {params : {oid : string}}) {
+    const {oid} = params
     return (
         <div>
-            Manage Order
+            <p>{`Manage Order ${oid}`}</p>
         </div>
     )
 }
