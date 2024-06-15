@@ -6,7 +6,7 @@ import { PlaceRetailerOrderProps } from "@/components/PlaceRetailerOrder/PlaceRe
 
 const createAxios = async (token : string | null) => {
     return axios.create({
-        baseURL : "http://localhost:5000",
+        baseURL : "https://vendorverse-server.onrender.com",
         headers : {
             'Content-Type' : 'application/json',
             'Authorization' : `Bearer ${token}`   

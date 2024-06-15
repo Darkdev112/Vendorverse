@@ -6,7 +6,7 @@ export default async function deleteToken(){
     const cookieStore = cookies()
     const sessionToken = cookieStore.get('session_token')?.value 
     try {
-        const response = await axios.delete(`${process.env.TESTING_URL}/logout`,{
+        const response = await axios.delete(`https://vendorverse-server.onrender.com/logout`,{
             headers:{
                 "Content-Type" : "application/json",
                 "Authorization" : sessionToken
