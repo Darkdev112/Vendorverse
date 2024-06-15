@@ -26,7 +26,7 @@ export default function Login({ params }: Params) {
                         <div className='basis-1/6 w-full flex items-center text-[1.6rem] tracking-wide text-[#98AFC7] font-changa my-2'>
                             Vendorverse
                         </div>
-                        <LoginSignupToggle occupant={params.occupant} url={process.env.TESTING_URL!}/>
+                        <LoginSignupToggle occupant={params.occupant} url={`https://vendorverse-server.onrender.com`}/>
                         <div className='basis-1/6  w-full'>
                             <ul className='text-xl  text-[#98AFC7] font-changa'>
                                 <li>Signup/login to get access to your workplace.</li>
