@@ -50,8 +50,8 @@ export default function SidebarL() {
     const pathname = usePathname();
     const [selected, setSelected] = useState<string>(pathname.substring(13));
     
-    const handleClick = (f: Fields) => {
-        router.push(f.path)
+    const handleClick = (f: Fields | string) => {
+        router.push((typeof(f) == "object")?f.path:f)
     }
 
     useEffect(() => {
@@ -62,11 +62,14 @@ export default function SidebarL() {
         <div className="flex flex-col lg:w-1/5 md:w-1/4 sm:hidden md:block border-r border-gray-100">
             {fields.map((field : Fields) => {
                 return (
-                    <div className={`mx-2 my-${field.id == 1 ? "5" : "10"} lg:h-[4rem] md:h-[3rem] rounded-md border px-3 py-1 ${selected === field.tag ? active : unactive} font-changa lg:text-[1.5rem] md:text-[1rem] flex justify-start items-center hover:border-[#323232] cursor-pointer transition`} onClick={() => { handleClick(field) }} key={field.id}>
+                    <div className={`mx-2 my-5 lg:h-[4rem] md:h-[3rem] rounded-md border px-3 py-1 ${selected === field.tag ? active : unactive} font-changa lg:text-[1.5rem] md:text-[1rem] flex justify-start items-center hover:border-[#323232] cursor-pointer transition`} onClick={() => { handleClick(field) }} key={field.id}>
                         {field.name}
                     </div>
                 )
             })}
+            <div className="my-5 text-center text-[#323232] font-changa text-md font-bold cursor-pointer hover:text-gray-100 transition" onClick={() => {handleClick("/workspace/r")}}>
+                Get Started
+            </div>
         </div>
     )
 }

@@ -10,7 +10,7 @@ import ProfileBody from "@/components/ProfileBody/ProfileBody";
 export default async function Profile({params} : {params : {auth : string}}) {
     const {auth} = params
     const getFunc = async (link: string) => {
-        const response = await axios.get(`${process.env.TESTING_URL}/${link}`, {
+        const response = await axios.get(`https://vendorverse-server.onrender.com/${link}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${auth}`,
